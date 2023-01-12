@@ -23,3 +23,5 @@
 hs_err_pid*
 
 .idea/
+
+mysql_db_data/
