@@ -21,7 +21,7 @@ public class FlightService {
         flightRepository.deleteById(id);
     }
 
-    public void save(ch.ms.airline.entity.Flight flight) {
+    public void create(Flight flight) {
         flightRepository.save(flight);
     }
 

@@ -39,6 +39,15 @@ public class Aircraft {
         this.flights = flights;
     }
 
+    public Aircraft(Aircraft aircraft) {
+        this.id = java.util.UUID.randomUUID().toString();
+        this.name = aircraft.getName();
+        this.manufacturer = aircraft.getManufacturer();
+        this.yearManufactured = aircraft.getYearManufactured();
+        this.seatCapacity = aircraft.getSeatCapacity();
+        this.flights = aircraft.getFlights();
+    }
+
     public String getId() {
         return id;
     }

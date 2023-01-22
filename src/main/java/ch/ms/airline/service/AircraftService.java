@@ -14,7 +14,8 @@ public class AircraftService {
     }
 
     public void createAircraft(Aircraft aircraft) {
-        aircraftRepository.save(aircraft);
+        Aircraft newAircraft = new Aircraft(aircraft);
+        aircraftRepository.save(newAircraft);
     }
 
     public void deleteAircraft(String id) {
