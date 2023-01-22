@@ -13,8 +13,12 @@ public class Pilot {
     private String firstName;
     private String lastName;
 
+    /*
     @OneToMany(mappedBy = "pilot")
     private List<Flight> flights;
+
+
+     */
 
     @ManyToOne
     @JoinColumn(name = "aircraft_id")
@@ -28,11 +32,11 @@ public class Pilot {
     public Pilot() {
     }
 
-    public Pilot(String firstName, String lastName, List<Flight> flights, Aircraft aircraft, Airport airport) {
+    public Pilot(String firstName, String lastName /*,List<Flight> flights*/, Aircraft aircraft, Airport airport) {
         this.id = java.util.UUID.randomUUID().toString();
         this.firstName = firstName;
         this.lastName = lastName;
-        this.flights = flights;
+       // this.flights = flights;
         this.aircraft = aircraft;
         this.airport = airport;
     }
@@ -60,6 +64,7 @@ public class Pilot {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+    /*
 
     public List<Flight> getFlights() {
         return flights;
@@ -68,6 +73,8 @@ public class Pilot {
     public void setFlights(List<Flight> flights) {
         this.flights = flights;
     }
+
+    */
 
     public Aircraft getAircraft() {
         return aircraft;

@@ -23,7 +23,7 @@ public class Aircraft {
     @Column(name = "seat_capacity")
     private Integer seatCapacity;
 
-    @OneToMany(mappedBy = "airplane", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "flight", fetch = FetchType.LAZY)
     private List<Flight> flights;
 
 
