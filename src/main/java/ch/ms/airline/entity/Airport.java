@@ -44,6 +44,16 @@ public class Airport {
         this.arrivalFlights = arrivalFlights;
     }
 
+    public Airport(Airport airport) {
+        this.id = java.util.UUID.randomUUID().toString();
+        this.name = airport.getName();
+        this.code = airport.getCode();
+        this.city = airport.getCity();
+        this.country = airport.getCountry();
+        this.departureFlights = airport.getDepartureFlights();
+        this.arrivalFlights = airport.getArrivalFlights();
+    }
+
     public String getId() {
         return id;
     }
