@@ -21,12 +21,12 @@ public class AirportController {
 
     @PostMapping("/airports")
     public void createAirport(@RequestBody Airport airport) {
-        airportService.save(airport);
+        airportService.create(airport);
     }
 
     @PutMapping("/airports")
     public void editAirport(@RequestParam String airportID, @RequestBody Airport airport) {
-        airportService.save(airport);
+        airportService.update(airportID, airport);
     }
 
     @DeleteMapping("/airports")

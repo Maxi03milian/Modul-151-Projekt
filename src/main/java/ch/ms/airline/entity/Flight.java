@@ -44,6 +44,16 @@ public class Flight {
         this.aircraft = aircraft;
     }
 
+    public Flight(Flight flight) {
+        this.id = java.util.UUID.randomUUID().toString();
+        this.flightNumber = flight.getFlightNumber();
+        this.departureAirport = flight.getDepartureAirport();
+        this.arrivalAirport = flight.getArrivalAirport();
+        this.departureTime = flight.getDepartureTime();
+        this.arrivalTime = flight.getArrivalTime();
+        this.aircraft = flight.getAircraft();
+    }
+
     public String getId() {
         return id;
     }

@@ -22,7 +22,7 @@ public class AircraftController {
 
     @PostMapping("/aircrafts")
     public void createAircraft(@RequestBody Aircraft aircraft) {
-        aircraftService.createAircraft(aircraft);
+        aircraftService.create(aircraft);
     }
 
     @PutMapping("/aircrafts")

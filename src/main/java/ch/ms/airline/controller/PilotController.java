@@ -20,7 +20,7 @@ public class PilotController {
 
     @PostMapping("/pilots")
     public void createPilot(@RequestBody Pilot pilot) {
-        pilotService.save(pilot);
+        pilotService.create(pilot);
     }
 
     @PutMapping("/pilots")

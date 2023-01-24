@@ -13,7 +13,7 @@ public class AircraftService {
         this.aircraftRepository = aircraftRepository;
     }
 
-    public void createAircraft(Aircraft aircraft) {
+    public void create(Aircraft aircraft) {
         Aircraft newAircraft = new Aircraft(aircraft);
         aircraftRepository.save(newAircraft);
     }

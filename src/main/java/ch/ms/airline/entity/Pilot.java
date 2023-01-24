@@ -41,6 +41,15 @@ public class Pilot {
         this.airport = airport;
     }
 
+    public Pilot(Pilot pilot) {
+        this.id = java.util.UUID.randomUUID().toString();
+        this.firstName = pilot.getFirstName();
+        this.lastName = pilot.getLastName();
+        //this.flights = pilot.getFlights();
+        this.aircraft = pilot.getAircraft();
+        this.airport = pilot.getAirport();
+    }
+
     public String getId() {
         return id;
     }

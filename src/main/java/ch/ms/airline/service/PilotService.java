@@ -17,8 +17,9 @@ public class PilotService {
         return pilotRepository.findAll();
     }
 
-    public void save(Pilot pilot) {
-        pilotRepository.save(pilot);
+    public void create(Pilot pilot) {
+        Pilot newPilot = new Pilot(pilot);
+        pilotRepository.save(newPilot);
     }
 
     public void update(String id, Pilot pilot) {

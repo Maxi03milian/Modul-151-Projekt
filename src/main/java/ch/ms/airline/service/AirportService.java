@@ -17,8 +17,9 @@ public class AirportService {
         return airportRepository.findAll();
     }
 
-    public void save(Airport airport) {
-        airportRepository.save(airport);
+    public void create(Airport airport) {
+        Airport newAirport = new Airport(airport);
+        airportRepository.save(newAirport);
     }
     public void update(String id, Airport airport) {
         Airport airportToUpdate = airportRepository.findById(id).get();

@@ -29,7 +29,8 @@ public class FlightService {
     }
 
     public void create(Flight flight) {
-        flightRepository.save(flight);
+        Flight newFlight = new Flight(flight);
+        flightRepository.save(newFlight);
     }
 
     public void delete(String id) {
