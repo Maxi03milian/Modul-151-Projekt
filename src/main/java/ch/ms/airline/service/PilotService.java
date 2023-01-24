@@ -13,8 +13,19 @@ public class PilotService {
         this.pilotRepository = pilotRepository;
     }
 
+    public Iterable findAll() {
+        return pilotRepository.findAll();
+    }
+
     public void save(Pilot pilot) {
         pilotRepository.save(pilot);
+    }
+
+    public void update(String id, Pilot pilot) {
+        Pilot pilotToUpdate = pilotRepository.findById(id).get();
+        pilotToUpdate.setFirstName(pilot.getFirstName());
+        pilotToUpdate.setLastName(pilot.getLastName());
+        pilotRepository.save(pilotToUpdate);
     }
 
     public Pilot findById(String id) {
@@ -33,9 +44,6 @@ public class PilotService {
         pilotRepository.deleteById(id);
     }
 
-    public Iterable findAll() {
-        return pilotRepository.findAll();
-    }
 
     public void deleteAll() {
         pilotRepository.deleteAll();

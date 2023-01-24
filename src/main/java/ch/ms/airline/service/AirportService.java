@@ -17,16 +17,31 @@ public class AirportService {
         return airportRepository.findAll();
     }
 
+    public void save(Airport airport) {
+        airportRepository.save(airport);
+    }
+    public void update(String id, Airport airport) {
+        Airport airportToUpdate = airportRepository.findById(id).get();
+        airportToUpdate.setName(airport.getName());
+        airportToUpdate.setCode(airport.getCode());
+        airportToUpdate.setCity(airport.getCity());
+        airportToUpdate.setCountry(airport.getCountry());
+        airportToUpdate.setDepartureFlights(airport.getDepartureFlights());
+        airportToUpdate.setArrivalFlights(airport.getArrivalFlights());
+        airportRepository.save(airportToUpdate);
+    }
+
     public void deleteAll() {
         airportRepository.deleteAll();
     }
 
-    public void deleteById(String id) {
+
+    public void delete(String id) {
         airportRepository.deleteById(id);
     }
 
-    public void save(Airport airport) {
-        airportRepository.save(airport);
+    public void deleteById(String id) {
+        airportRepository.deleteById(id);
     }
 
     public Airport findById(String id) {
@@ -41,8 +56,5 @@ public class AirportService {
         return airportRepository.count();
     }
 
-    public void delete(String id) {
-        airportRepository.deleteById(id);
-    }
 
 }

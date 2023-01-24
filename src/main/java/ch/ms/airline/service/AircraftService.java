@@ -18,7 +18,17 @@ public class AircraftService {
         aircraftRepository.save(newAircraft);
     }
 
-    public void deleteAircraft(String id) {
+    public void update(String id, Aircraft aircraft) {
+        Aircraft aircraftToUpdate = aircraftRepository.findById(id).get();
+        aircraftToUpdate.setName(aircraft.getName());
+        aircraftToUpdate.setManufacturer(aircraft.getManufacturer());
+        aircraftToUpdate.setYearManufactured(aircraft.getYearManufactured());
+        aircraftToUpdate.setSeatCapacity(aircraft.getSeatCapacity());
+        aircraftToUpdate.setFlights(aircraft.getFlights());
+        aircraftRepository.save(aircraftToUpdate);
+    }
+
+    public void delete(String id) {
         aircraftRepository.deleteById(id);
     }
 
@@ -30,7 +40,4 @@ public class AircraftService {
         return aircraftRepository.findById(id).get();
     }
 
-    public void updateAircraft(Aircraft aircraft) {
-        aircraftRepository.save(aircraft);
-    }
 }

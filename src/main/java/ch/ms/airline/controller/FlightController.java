@@ -2,10 +2,7 @@ package ch.ms.airline.controller;
 
 import ch.ms.airline.entity.Flight;
 import ch.ms.airline.service.FlightService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class FlightController {
@@ -24,5 +21,14 @@ public class FlightController {
     @PostMapping("/flights")
     public void createFlight(@RequestBody Flight flight) {
         flightService.create(flight);
+    }
+    @PutMapping("/flights")
+    public void editFlight(@RequestParam String flightID, @RequestBody Flight flight) {
+        flightService.update(flightID, flight);
+    }
+
+    @DeleteMapping("/flights")
+    public void delete(@RequestParam String flightID) {
+        flightService.delete(flightID);
     }
 }

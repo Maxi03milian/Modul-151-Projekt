@@ -1,6 +1,7 @@
 package ch.ms.airline.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -23,6 +24,7 @@ public class Aircraft {
     @Column(name = "seat_capacity")
     private Integer seatCapacity;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "aircraft", fetch = FetchType.LAZY)
     private List<Flight> flights;
 

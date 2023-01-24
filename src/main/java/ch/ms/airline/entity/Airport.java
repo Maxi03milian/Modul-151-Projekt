@@ -1,5 +1,6 @@
 package ch.ms.airline.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -22,9 +23,10 @@ public class Airport {
     @Column(name = "country")
     private String country;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "departureAirport", fetch = FetchType.LAZY)
     private List<Flight> departureFlights;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "arrivalAirport", fetch = FetchType.LAZY)
     private List<Flight> arrivalFlights;
 
