@@ -24,7 +24,7 @@ public class FlightController {
         flightService.create(flight);
     }
     @PutMapping("/flights")
-    public void editFlight(@RequestParam String flightID, @RequestBody Flight flight) {
+    public void editFlight(@RequestParam String flightID, @RequestBody FlightRequest flight) {
         flightService.update(flightID, flight);
     }
 

@@ -27,14 +27,18 @@ public class FlightService {
         return flightRepository.findAll();
     }
 
-    public void update(String id,  Flight flight) {
+    public void update(String id,  FlightRequest flight) {
+        Airport departureAirport = airportRepository.findById(flight.getDepartureAirportID()).get();
+        Airport arrivalAirport = airportRepository.findById(flight.getArrivalAirportID()).get();
+        Aircraft aircraft = aircraftRepository.findById(flight.getAircraftID()).get();
+
         Flight flightToUpdate = flightRepository.findById(id).get();
         flightToUpdate.setFlightNumber(flight.getFlightNumber());
-        flightToUpdate.setDepartureAirport(flight.getDepartureAirport());
-        flightToUpdate.setArrivalAirport(flight.getArrivalAirport());
+        flightToUpdate.setDepartureAirport(departureAirport);
+        flightToUpdate.setArrivalAirport(arrivalAirport);
         flightToUpdate.setDepartureTime(flight.getDepartureTime());
         flightToUpdate.setArrivalTime(flight.getArrivalTime());
-        flightToUpdate.setAircraft(flight.getAircraft());
+        flightToUpdate.setAircraft(aircraft);
         flightRepository.save(flightToUpdate);
     }
 
