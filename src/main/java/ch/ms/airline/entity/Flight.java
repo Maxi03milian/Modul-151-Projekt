@@ -1,5 +1,6 @@
 package ch.ms.airline.entity;
 
+import ch.ms.airline.model.request.FlightRequest;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -52,6 +53,16 @@ public class Flight {
         this.departureTime = flight.getDepartureTime();
         this.arrivalTime = flight.getArrivalTime();
         this.aircraft = flight.getAircraft();
+    }
+
+    public Flight(FlightRequest flight, Airport departureAirport, Airport arrivalAirport, Aircraft aircraft) {
+        this.id = java.util.UUID.randomUUID().toString();
+        this.flightNumber = flight.getFlightNumber();
+        this.departureAirport = departureAirport;
+        this.arrivalAirport = arrivalAirport;
+        this.departureTime = flight.getDepartureTime();
+        this.arrivalTime = flight.getArrivalTime();
+        this.aircraft = aircraft;
     }
 
     public String getId() {

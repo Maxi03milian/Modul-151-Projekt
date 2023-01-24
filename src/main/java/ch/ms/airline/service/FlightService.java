@@ -1,6 +1,11 @@
 package ch.ms.airline.service;
 
+import ch.ms.airline.entity.Aircraft;
+import ch.ms.airline.entity.Airport;
 import ch.ms.airline.entity.Flight;
+import ch.ms.airline.model.request.FlightRequest;
+import ch.ms.airline.repo.AircraftRepository;
+import ch.ms.airline.repo.AirportRepository;
 import ch.ms.airline.repo.FlightRepository;
 import org.springframework.stereotype.Service;
 
@@ -8,9 +13,14 @@ import org.springframework.stereotype.Service;
 public class FlightService {
 
     FlightRepository flightRepository;
+    AirportRepository airportRepository;
+    AircraftRepository aircraftRepository;
 
-    public FlightService(FlightRepository flightRepository) {
+
+    public FlightService(FlightRepository flightRepository, AirportRepository airportRepository, AircraftRepository aircraftRepository) {
         this.flightRepository = flightRepository;
+        this.airportRepository = airportRepository;
+        this.aircraftRepository = aircraftRepository;
     }
 
     public Iterable findAll() {
@@ -28,8 +38,11 @@ public class FlightService {
         flightRepository.save(flightToUpdate);
     }
 
-    public void create(Flight flight) {
-        Flight newFlight = new Flight(flight);
+    public void create(FlightRequest flight) {
+        Airport departureAirport = airportRepository.findById(flight.getDepartureAirportID()).get();
+        Airport arrivalAirport = airportRepository.findById(flight.getArrivalAirportID()).get();
+        Aircraft aircraft = aircraftRepository.findById(flight.getAircraftID()).get();
+        Flight newFlight = new Flight(flight, departureAirport, arrivalAirport, aircraft);
         flightRepository.save(newFlight);
     }
 
