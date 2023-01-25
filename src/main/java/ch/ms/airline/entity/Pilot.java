@@ -9,45 +9,23 @@ public class Pilot {
     @Id
     @Column(length = 36, nullable = false)
     private String id;
-
     private String firstName;
     private String lastName;
-
-    /*
-    @OneToMany(mappedBy = "pilot")
-    private List<Flight> flights;
-
-
-     */
-
-    @ManyToOne
-    @JoinColumn(name = "aircraft_id")
-    private Aircraft aircraft;
-
-    @ManyToOne
-    @JoinColumn(name = "airport_id")
-    private Airport airport;
 
 
     public Pilot() {
     }
 
-    public Pilot(String firstName, String lastName /*,List<Flight> flights*/, Aircraft aircraft, Airport airport) {
+    public Pilot(String firstName, String lastName) {
         this.id = java.util.UUID.randomUUID().toString();
         this.firstName = firstName;
         this.lastName = lastName;
-       // this.flights = flights;
-        this.aircraft = aircraft;
-        this.airport = airport;
     }
 
     public Pilot(Pilot pilot) {
         this.id = java.util.UUID.randomUUID().toString();
         this.firstName = pilot.getFirstName();
         this.lastName = pilot.getLastName();
-        //this.flights = pilot.getFlights();
-        this.aircraft = pilot.getAircraft();
-        this.airport = pilot.getAirport();
     }
 
     public String getId() {
@@ -72,33 +50,6 @@ public class Pilot {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-    /*
-
-    public List<Flight> getFlights() {
-        return flights;
-    }
-
-    public void setFlights(List<Flight> flights) {
-        this.flights = flights;
-    }
-
-    */
-
-    public Aircraft getAircraft() {
-        return aircraft;
-    }
-
-    public void setAircraft(Aircraft aircraft) {
-        this.aircraft = aircraft;
-    }
-
-    public Airport getAirport() {
-        return airport;
-    }
-
-    public void setAirport(Airport airport) {
-        this.airport = airport;
     }
 }
 
