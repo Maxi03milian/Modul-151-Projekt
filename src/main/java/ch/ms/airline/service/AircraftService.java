@@ -32,7 +32,7 @@ public class AircraftService {
 
     public void update(String id, AircraftRequest aircraft) {
         Pilot pilot = pilotRepository.findById(aircraft.getPilotID()).get();
-        if (pilot.getAircraft() != null) {
+        if (pilot.getAircraft() != null && !pilot.getAircraft().getId().equals(id)) {
             throw new IllegalArgumentException("Pilot is already assigned to an aircraft");
         }
         Aircraft aircraftToUpdate = aircraftRepository.findById(id).get();
