@@ -33,6 +33,13 @@ public class AirportService {
     }
 
     public void delete(String id) {
+        Airport airport = airportRepository.findById(id).get();
+        if (airport.getDepartureFlights() != null || airport.getArrivalFlights() != null) {
+            throw new IllegalArgumentException("Airport is assigned to a flight");
+        }
+        if(airport.getPilots() != null) {
+            throw new IllegalArgumentException("Airport is assigned to at least one pilot");
+        }
         airportRepository.deleteById(id);
     }
 

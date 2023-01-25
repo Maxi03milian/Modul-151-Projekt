@@ -34,6 +34,13 @@ public class PilotService {
     }
 
     public void delete(String id) {
+        Pilot pilot = pilotRepository.findById(id).get();
+        if (pilot.getAirports() != null) {
+            throw new IllegalArgumentException("Pilot is assigned to an airport");
+        }
+        if (pilot.getAircraft() != null) {
+            throw new IllegalArgumentException("Pilot is assigned to an aircraft");
+        }
         pilotRepository.deleteById(id);
     }
 
