@@ -13,6 +13,9 @@ public class AircraftService {
         this.aircraftRepository = aircraftRepository;
     }
 
+    public Iterable<Aircraft> findAll() {
+        return aircraftRepository.findAll();
+    }
     public void create(Aircraft aircraft) {
         Aircraft newAircraft = new Aircraft(aircraft);
         aircraftRepository.save(newAircraft);
@@ -30,10 +33,6 @@ public class AircraftService {
 
     public void delete(String id) {
         aircraftRepository.deleteById(id);
-    }
-
-    public Iterable<Aircraft> getAllAircrafts() {
-        return aircraftRepository.findAll();
     }
 
     public Aircraft getAircraft(String id) {

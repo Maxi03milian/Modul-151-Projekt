@@ -17,7 +17,7 @@ public class AircraftController {
 
     @GetMapping("/aircrafts")
     public Iterable<Aircraft> getAircrafts() {
-        return aircraftService.getAllAircrafts();
+        return aircraftService.findAll();
     }
 
     @PostMapping("/aircrafts")

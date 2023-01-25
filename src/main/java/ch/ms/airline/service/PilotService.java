@@ -29,6 +29,10 @@ public class PilotService {
         pilotRepository.save(pilotToUpdate);
     }
 
+    public void delete(String id) {
+        pilotRepository.deleteById(id);
+    }
+
     public Pilot findById(String id) {
         return pilotRepository.findById(id).get();
     }
@@ -40,11 +44,6 @@ public class PilotService {
     public long count() {
         return pilotRepository.count();
     }
-
-    public void delete(String id) {
-        pilotRepository.deleteById(id);
-    }
-
 
     public void deleteAll() {
         pilotRepository.deleteAll();

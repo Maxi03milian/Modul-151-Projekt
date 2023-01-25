@@ -32,17 +32,12 @@ public class AirportService {
         airportRepository.save(airportToUpdate);
     }
 
-    public void deleteAll() {
-        airportRepository.deleteAll();
-    }
-
-
     public void delete(String id) {
         airportRepository.deleteById(id);
     }
 
-    public void deleteById(String id) {
-        airportRepository.deleteById(id);
+    public void deleteAll() {
+        airportRepository.deleteAll();
     }
 
     public Airport findById(String id) {
