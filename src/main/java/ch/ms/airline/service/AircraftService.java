@@ -27,13 +27,14 @@ public class AircraftService {
         aircraftRepository.save(newAircraft);
     }
 
-    public void update(String id, Aircraft aircraft) {
+    public void update(String id, AircraftRequest aircraft) {
+        Pilot pilot = pilotRepository.findById(aircraft.getPilotID()).get();
         Aircraft aircraftToUpdate = aircraftRepository.findById(id).get();
         aircraftToUpdate.setName(aircraft.getName());
         aircraftToUpdate.setManufacturer(aircraft.getManufacturer());
         aircraftToUpdate.setYearManufactured(aircraft.getYearManufactured());
         aircraftToUpdate.setSeatCapacity(aircraft.getSeatCapacity());
-        aircraftToUpdate.setFlights(aircraft.getFlights());
+        aircraftToUpdate.setPilot(pilot);
         aircraftRepository.save(aircraftToUpdate);
     }
 

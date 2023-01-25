@@ -27,7 +27,7 @@ public class AircraftController {
     }
 
     @PutMapping("/aircrafts")
-    public void editAircraft(@RequestParam String aircraftID, @RequestBody Aircraft aircraft) {
+    public void editAircraft(@RequestParam String aircraftID, @RequestBody AircraftRequest aircraft) {
         aircraftService.update(aircraftID, aircraft);
     }
 
