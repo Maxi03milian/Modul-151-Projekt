@@ -3,6 +3,7 @@ package ch.ms.airline.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -30,11 +31,18 @@ public class Airport {
     @OneToMany(mappedBy = "arrivalAirport", fetch = FetchType.LAZY)
     private List<Flight> arrivalFlights;
 
+    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @JoinTable(
+            name = "pilot-airport",
+            joinColumns = @JoinColumn(name = "pilot_id"),
+            inverseJoinColumns = @JoinColumn(name = "airport_id"))
+    private List<Pilot> pilots = new ArrayList<>();
+
 
     public Airport() {
     }
 
-    public Airport(String name, String code, String city, String country, List<Flight> departureFlights, List<Flight> arrivalFlights) {
+    public Airport(String name, String code, String city, String country, List<Flight> departureFlights, List<Flight> arrivalFlights, List<Pilot> pilots) {
         this.id = java.util.UUID.randomUUID().toString();
         this.name = name;
         this.code = code;
@@ -42,6 +50,7 @@ public class Airport {
         this.country = country;
         this.departureFlights = departureFlights;
         this.arrivalFlights = arrivalFlights;
+        this.pilots = pilots;
     }
 
     public Airport(Airport airport) {
@@ -52,6 +61,7 @@ public class Airport {
         this.country = airport.getCountry();
         this.departureFlights = airport.getDepartureFlights();
         this.arrivalFlights = airport.getArrivalFlights();
+        this.pilots = airport.getPilots();
     }
 
     public String getId() {
@@ -108,6 +118,14 @@ public class Airport {
 
     public void setArrivalFlights(List<Flight> arrivalFlights) {
         this.arrivalFlights = arrivalFlights;
+    }
+
+    public List<Pilot> getPilots() {
+        return pilots;
+    }
+
+    public void setPilots(List<Pilot> pilots) {
+        this.pilots = pilots;
     }
 }
 

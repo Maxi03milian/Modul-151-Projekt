@@ -33,6 +33,11 @@ public class PilotController {
         pilotService.delete(pilotID);
     }
 
+    @PostMapping("/pilots/{pilotID}/airports/{airportID}")
+    public void addPilotToAirport(@PathVariable String pilotID, @PathVariable String airportID) {
+        pilotService.addPilotToAirport(pilotID, airportID);
+    }
+
 
 
 }

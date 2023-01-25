@@ -13,19 +13,25 @@ public class Pilot {
     private String firstName;
     private String lastName;
 
-
-    public Pilot() {
-    }
-
     @JsonIgnore
     @OneToOne(mappedBy = "pilot", cascade = CascadeType.ALL)
     private Aircraft aircraft;
 
-    public Pilot(String firstName, String lastName, Aircraft aircraft) {
+    @JsonIgnore
+    @ManyToMany(mappedBy = "pilots")
+    private List<Airport> airports;
+
+
+    public Pilot() {
+    }
+
+
+    public Pilot(String firstName, String lastName, Aircraft aircraft, List<Airport> airports) {
         this.id = java.util.UUID.randomUUID().toString();
         this.firstName = firstName;
         this.lastName = lastName;
         this.aircraft = aircraft;
+        this.airports = airports;
     }
 
     public Pilot(Pilot pilot) {
@@ -33,6 +39,7 @@ public class Pilot {
         this.firstName = pilot.getFirstName();
         this.lastName = pilot.getLastName();
         this.aircraft = pilot.getAircraft();
+        this.airports = pilot.getAirports();
     }
 
     public String getId() {
@@ -65,6 +72,14 @@ public class Pilot {
 
     public void setAircraft(Aircraft aircraft) {
         this.aircraft = aircraft;
+    }
+
+    public List<Airport> getAirports() {
+        return airports;
+    }
+
+    public void setAirports(List<Airport> airports) {
+        this.airports = airports;
     }
 }
 
