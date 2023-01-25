@@ -68,4 +68,16 @@ public class PilotService {
         pilotRepository.save(pilot);
         airportRepository.save(airport);
     }
+
+    public void removePilotFromAirport(String pilotID, String airportID) {
+        Pilot pilot = pilotRepository.findById(pilotID).get();
+        Airport airport = airportRepository.findById(airportID).get();
+        if (pilot == null || airport == null) {
+            throw new IllegalArgumentException("Pilot or Airport not found");
+        }
+        airport.getPilots().remove(pilot);
+        pilot.getAirports().remove(airport);
+        pilotRepository.save(pilot);
+        airportRepository.save(airport);
+    }
 }

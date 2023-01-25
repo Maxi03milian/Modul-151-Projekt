@@ -38,6 +38,11 @@ public class PilotController {
         pilotService.addPilotToAirport(pilotID, airportID);
     }
 
+    @DeleteMapping("/pilots/{pilotID}/airports/{airportID}")
+    public void removePilotFromAirport(@PathVariable String pilotID, @PathVariable String airportID) {
+        pilotService.removePilotFromAirport(pilotID, airportID);
+    }
+
 
 
 }
