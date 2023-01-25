@@ -23,12 +23,18 @@ public class AircraftService {
     }
     public void create(AircraftRequest aircraft) {
         Pilot pilot = pilotRepository.findById(aircraft.getPilotID()).get();
+        if (pilot.getAircraft() != null) {
+            throw new IllegalArgumentException("Pilot is already assigned to an aircraft");
+        }
         Aircraft newAircraft = new Aircraft(aircraft, pilot);
         aircraftRepository.save(newAircraft);
     }
 
     public void update(String id, AircraftRequest aircraft) {
         Pilot pilot = pilotRepository.findById(aircraft.getPilotID()).get();
+        if (pilot.getAircraft() != null) {
+            throw new IllegalArgumentException("Pilot is already assigned to an aircraft");
+        }
         Aircraft aircraftToUpdate = aircraftRepository.findById(id).get();
         aircraftToUpdate.setName(aircraft.getName());
         aircraftToUpdate.setManufacturer(aircraft.getManufacturer());
