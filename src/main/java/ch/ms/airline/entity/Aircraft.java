@@ -1,6 +1,7 @@
 package ch.ms.airline.entity;
 
 
+import ch.ms.airline.model.request.AircraftRequest;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
@@ -28,17 +29,22 @@ public class Aircraft {
     @OneToMany(mappedBy = "aircraft", fetch = FetchType.LAZY)
     private List<Flight> flights;
 
+    @OneToOne
+    @JoinColumn(name = "pilot_id")
+    private Pilot pilot;
+
 
     public Aircraft() {
     }
 
-    public Aircraft(String name, String manufacturer, Integer yearManufactured, Integer seatCapacity, List<Flight> flights) {
+    public Aircraft(String name, String manufacturer, Integer yearManufactured, Integer seatCapacity, List<Flight> flights, Pilot pilot) {
         this.id = java.util.UUID.randomUUID().toString();
         this.name = name;
         this.manufacturer = manufacturer;
         this.yearManufactured = yearManufactured;
         this.seatCapacity = seatCapacity;
         this.flights = flights;
+        this.pilot = pilot;
     }
 
     public Aircraft(Aircraft aircraft) {
@@ -48,6 +54,16 @@ public class Aircraft {
         this.yearManufactured = aircraft.getYearManufactured();
         this.seatCapacity = aircraft.getSeatCapacity();
         this.flights = aircraft.getFlights();
+        this.pilot = aircraft.getPilot();
+    }
+
+    public Aircraft(AircraftRequest aircraft, Pilot pilot) {
+        this.id = java.util.UUID.randomUUID().toString();
+        this.name = aircraft.getName();
+        this.manufacturer = aircraft.getManufacturer();
+        this.yearManufactured = aircraft.getYearManufactured();
+        this.seatCapacity = aircraft.getSeatCapacity();
+        this.pilot = pilot;
     }
 
     public String getId() {
@@ -96,6 +112,14 @@ public class Aircraft {
 
     public void setFlights(List<Flight> flights) {
         this.flights = flights;
+    }
+
+    public Pilot getPilot() {
+        return pilot;
+    }
+
+    public void setPilot(Pilot pilot) {
+        this.pilot = pilot;
     }
 
 

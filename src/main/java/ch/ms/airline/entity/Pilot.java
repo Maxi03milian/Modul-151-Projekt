@@ -1,5 +1,6 @@
 package ch.ms.airline.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -16,16 +17,22 @@ public class Pilot {
     public Pilot() {
     }
 
-    public Pilot(String firstName, String lastName) {
+    @JsonIgnore
+    @OneToOne(mappedBy = "pilot", cascade = CascadeType.ALL)
+    private Aircraft aircraft;
+
+    public Pilot(String firstName, String lastName, Aircraft aircraft) {
         this.id = java.util.UUID.randomUUID().toString();
         this.firstName = firstName;
         this.lastName = lastName;
+        this.aircraft = aircraft;
     }
 
     public Pilot(Pilot pilot) {
         this.id = java.util.UUID.randomUUID().toString();
         this.firstName = pilot.getFirstName();
         this.lastName = pilot.getLastName();
+        this.aircraft = pilot.getAircraft();
     }
 
     public String getId() {
@@ -50,6 +57,14 @@ public class Pilot {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public Aircraft getAircraft() {
+        return aircraft;
+    }
+
+    public void setAircraft(Aircraft aircraft) {
+        this.aircraft = aircraft;
     }
 }
 

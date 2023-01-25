@@ -1,23 +1,29 @@
 package ch.ms.airline.service;
 
 import ch.ms.airline.entity.Aircraft;
+import ch.ms.airline.entity.Pilot;
+import ch.ms.airline.model.request.AircraftRequest;
 import ch.ms.airline.repo.AircraftRepository;
+import ch.ms.airline.repo.PilotRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AircraftService {
 
     AircraftRepository aircraftRepository;
+    PilotRepository pilotRepository;
 
-    public AircraftService(AircraftRepository aircraftRepository) {
+    public AircraftService(AircraftRepository aircraftRepository, PilotRepository pilotRepository) {
         this.aircraftRepository = aircraftRepository;
+        this.pilotRepository = pilotRepository;
     }
 
     public Iterable<Aircraft> findAll() {
         return aircraftRepository.findAll();
     }
-    public void create(Aircraft aircraft) {
-        Aircraft newAircraft = new Aircraft(aircraft);
+    public void create(AircraftRequest aircraft) {
+        Pilot pilot = pilotRepository.findById(aircraft.getPilotID()).get();
+        Aircraft newAircraft = new Aircraft(aircraft, pilot);
         aircraftRepository.save(newAircraft);
     }
 

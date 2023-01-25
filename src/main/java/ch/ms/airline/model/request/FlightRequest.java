@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 public class FlightRequest {
 
-private String flightID;
+    private String flightID;
 
     @NotNull
     private String flightNumber;

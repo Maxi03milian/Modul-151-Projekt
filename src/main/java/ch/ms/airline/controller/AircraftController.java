@@ -1,6 +1,7 @@
 package ch.ms.airline.controller;
 
 import ch.ms.airline.entity.Aircraft;
+import ch.ms.airline.model.request.AircraftRequest;
 import ch.ms.airline.service.AircraftService;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +22,7 @@ public class AircraftController {
     }
 
     @PostMapping("/aircrafts")
-    public void createAircraft(@RequestBody Aircraft aircraft) {
+    public void createAircraft(@RequestBody AircraftRequest aircraft) {
         aircraftService.create(aircraft);
     }
 
